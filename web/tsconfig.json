@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "lib": [
+            "Dom"
+        ],
+        "jsx": "react-jsx",
+        "declaration": false,
+        "removeComments": false,
+        "strict": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": [
+                "./src/*"
+            ],
+            "@api/*": [
+                "./src/api/*"
+            ],
+            "@pages/*": [
+                "./src/pages/*"
+            ],
+            "@utils/*": [
+                "./utils/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ],
+}
