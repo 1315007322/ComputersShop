@@ -10,13 +10,14 @@ import com.example.computersshop.entity.User;
 import com.example.computersshop.mapper.UserMap;
 import com.example.computersshop.service.IUserService;
 import com.example.computersshop.service.ex.InsertException;
-import com.example.computersshop.service.ex.UserException;
+import com.example.computersshop.service.ex.UserAlreadyException;
+import com.example.computersshop.service.ex.UserNotFoundException;
+import com.example.computersshop.service.ex.UserPwAtypismException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
-import java.util.Locale;
 import java.util.UUID;
 
 @Service
@@ -29,7 +30,7 @@ public class UserServiceImpl implements IUserService {
     public void reg(User user) {
         User result = userMap.findByUsername(user.getUsername());
         if(result != null){
-            throw new UserException("用户名被占用，请重新注册");
+            throw new UserAlreadyException("用户名被占用，请重新注册");
         }else{
             String pw = user.getPassword();
             String uuid = UUID.randomUUID().toString().toLowerCase();
@@ -56,5 +57,25 @@ public class UserServiceImpl implements IUserService {
             pw = DigestUtils.md5DigestAsHex((salt + pw + salt).getBytes()).toUpperCase();
         }
         return pw;
+    }
+
+
+    @Override
+    public User login(String username, String password) {
+        User user = userMap.findByUsername(username);
+        if(user == null){
+            throw new UserNotFoundException("没有该用户");
+        }
+        String salt = user.getSalt();
+        String md5PW = getMD5PW(password, salt);
+        if(!user.getPassword().equals(md5PW)){
+            throw new UserPwAtypismException("账号密码错误");
+        }
+
+        User user1 = new User();
+        user1.setUsername(user.getUsername());
+        user1.setUid(user.getUid());
+        user1.setAvatar(user.getAvatar());
+        return user1;
     }
 }

@@ -29,6 +29,8 @@
             t_user
         WHERE
             username = #{username}
+        AND
+            is_delete = 0
     </select>
 
 </mapper>
