@@ -6,6 +6,9 @@ package com.example.computersshop.entity;
  *创建时间:2022/3/12 17:56
  */
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class User extends Base{
     private Integer uid;
     private String username;
