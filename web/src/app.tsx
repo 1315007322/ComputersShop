@@ -5,7 +5,7 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import { ConfigProvider } from 'antd'
 import routes from '@src/config/routes'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './pages/user/login';
+import Login from './pages/user/home';
 const App = () => {
 
     return (

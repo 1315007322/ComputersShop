@@ -14,7 +14,7 @@ import Projects from '@src/pages/content/projects'
 import Article from '@src/pages/article'
 import PhotosDetail from '@pages/photos/detail'
 import { Navigate } from 'react-router-dom'
-import Login from '@src/pages/user/login'
+import Login from '@src/pages/user/home'
 
 
 
