@@ -11,6 +11,8 @@ import com.example.computersshop.utils.JsonResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 //控制层基类
 public class BaseController {
     public static final int OK = 200;
@@ -35,6 +37,15 @@ public class BaseController {
             result.setMessage(("账号密码错误"));
         }
         return  result;
+    }
+
+
+    protected Integer getUuidFromSession(HttpSession httpSession){
+        return Integer.valueOf(httpSession.getAttribute("uid").toString());
+    }
+
+    protected String getUsernameFromSession(HttpSession httpSession){
+        return httpSession.getAttribute("username").toString();
     }
 
 }
