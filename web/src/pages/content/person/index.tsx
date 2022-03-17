@@ -1,8 +1,11 @@
 import { Button, Descriptions, Image } from 'antd';
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import ChangePwModal from './components/ChangePwModal';
 
 const Person = () => {
+    const [changePwVisible, setChangePwVisible] = useState<boolean>(false)
+
     return (
         <Wrap>
             <Image
@@ -14,7 +17,9 @@ const Person = () => {
                 title="基本信息"
                 extra={
                     <div>
-                        <Button type="default">修改密码</Button>
+                        <Button type="default" onClick={() => {
+                            setChangePwVisible(true)
+                        }}>修改密码</Button>
                         <Button type="primary">编辑</Button>
                     </div>
                 }
@@ -24,6 +29,8 @@ const Person = () => {
                 <Descriptions.Item label="邮箱">Hangzhou, Zhejiang</Descriptions.Item>
                 <Descriptions.Item label="性别">empty</Descriptions.Item>
             </Descriptions>
+
+            <ChangePwModal visible={changePwVisible} oncancel={() => { setChangePwVisible(false) }} />
         </Wrap>
     )
 }

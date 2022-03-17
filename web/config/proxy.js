@@ -1,8 +1,8 @@
 const proxy = {
     dev: {
         '/api': {
-            target: 'http://localhost:3000',
-            // target: 'http://www.hblyan.com:8083',
+            // target: 'http://localhost:3000',
+            target: 'http://8.142.15.149:3100',
 
             secure: false,
             changeOrigin: true,

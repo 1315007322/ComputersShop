@@ -15,7 +15,6 @@ const Login = (props: Props) => {
         console.log('Success:', values);
         UserLogin(values).then(
             res => {
-                console.log(res);
                 form.resetFields();
                 message.success("登录成功！")
                 localStorage.setItem('user',JSON.stringify(res))
