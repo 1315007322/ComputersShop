@@ -8,26 +8,20 @@ import {
 import {
     HiOutlinePhotograph
 } from 'react-icons/hi'
-import Home from '@pages/home'
-import Photos from '@src/pages/photos/list'
-import Projects from '@src/pages/content/projects'
-import Article from '@src/pages/article'
-import PhotosDetail from '@pages/photos/detail'
+import LoginOrReg from '@pages/user/LoginOrReg'
+// import Photos from '@src/pages/photos/list'
+// import Projects from '@src/pages/content/projects'
+// import Article from '@src/pages/article'
+// import PhotosDetail from '@pages/photos/detail'
 import { Navigate } from 'react-router-dom'
-import Login from '@src/pages/user/home'
+import Home from '@src/pages/content/home'
+import Person from '@src/pages/content/person'
 
 
 
 const routes = [
     {
-        path: '/login',
-        index: true,
-        component: <Login />,
-        name: '登录页',
-        isMenu: false,
-    },
-    {
-        path: '/',
+        path: '/home',
         index: true,
         component: <Home />,
         name: '主页',
@@ -37,29 +31,39 @@ const routes = [
         ]
     },
     {
-        path: '/article',
-        component: <Article />,
-        name: 'article'
+        path: '/person',
+        index: true,
+        component: <Person />,
+        name: '主页',
+        isMenu: false,
+        childrens: [
+        ]
     },
-    {
-        path: '/projects',
-        component: <Projects />,
-        name: '项目',
-        icon: <FiGithub />,
-        isMenu: true
-    },
-    {
-        path: '/photos',
-        component: <Photos />,
-        name: '相册',
-        icon: <HiOutlinePhotograph />,
-        isMenu: true
-    },
-    {
-        path: '/photos/detail',
-        component: <PhotosDetail />,
-        name: '相册',
-    },
+    
+    // {
+    //     path: '/article',
+    //     component: <Article />,
+    //     name: 'article'
+    // },
+    // {
+    //     path: '/projects',
+    //     component: <Projects />,
+    //     name: '项目',
+    //     icon: <FiGithub />,
+    //     isMenu: true
+    // },
+    // {
+    //     path: '/photos',
+    //     component: <Photos />,
+    //     name: '相册',
+    //     icon: <HiOutlinePhotograph />,
+    //     isMenu: true
+    // },
+    // {
+    //     path: '/photos/detail',
+    //     component: <PhotosDetail />,
+    //     name: '相册',
+    // },
     {
         path: '*',
         component: <Home />,

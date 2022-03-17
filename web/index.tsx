@@ -5,6 +5,10 @@ import App from '@src/app'
 import { history, HistoryRouter } from '@utils/router'
 
 
+import './src/assets/styles/common.less'
+import './src/assets/styles/reset.less'
+
+
 render(
     <HistoryRouter history={history}>
         <App />

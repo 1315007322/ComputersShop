@@ -29,4 +29,10 @@ public class UserServiceTests {
         userService.reg(user);
         System.out.println("注册成功");
     }
+
+
+    @Test
+    public void changePassword(){
+        userService.changePassword(21,"qqq","111","222");
+    }
 }

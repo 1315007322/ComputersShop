@@ -23,7 +23,7 @@ const Index = () => {
     })
 
     useEffect(() => {
-        getArticleList()
+        // getArticleList()
 
     }, [pageOptions.pageNum, pageOptions.pageSize])
 
@@ -99,7 +99,7 @@ const Index = () => {
     }
     return (
         <Wrap>
-            {renderCards()}
+            {/* {renderCards()} */}
         </Wrap>
 
     )

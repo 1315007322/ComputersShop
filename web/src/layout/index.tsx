@@ -3,6 +3,7 @@ import { Layout, BackTop } from 'antd';
 import Nav from './nav';
 import { RiRocket2Fill } from 'react-icons/ri'
 import styled from 'styled-components';
+import TopHeader from './components/TopHeader';
 
 const { Header, Footer, Content } = Layout;
 
@@ -11,10 +12,13 @@ const BasicLayout = (props: any) => {
 		<Wrap>
 			<Layout className='layout'>
 				<Header className='header'>
+					<TopHeader />
 					<Nav />
 				</Header>
-				<Content style={{ padding: '10px 20px', marginTop: '44px' }}>
-					{props.children}
+				<Content style={{ padding: '10px 20px', marginTop: '93px',background: '#fff' }}>
+					<div className="base_content">
+						{props.children}
+					</div>
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
 					苏ICP备19044106号-2 Powered by YHF © 2022 Copyright
@@ -32,18 +36,17 @@ const BasicLayout = (props: any) => {
 
 const Wrap = styled.div`
 	.layout{
-		max-width: 1170px;
-		margin: auto;
 		box-shadow: 0px 0px 5px 0px #efefef;
    		transform: scale3d(1, 1, 1);
-		   position: relative;
+		position: relative;
 	}
 	.header{
 		background-color: #fff;
 		position: fixed;
 		z-index: 10;
-		height: 44px;
+		height: auto !important ;
 		width: 100%;
+		padding: 0;
 	}
 	.ant-layout-header{
 		line-height: 44px;

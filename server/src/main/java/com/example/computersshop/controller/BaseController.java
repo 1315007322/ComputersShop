@@ -35,6 +35,12 @@ public class BaseController {
         }else if(e instanceof UserPwAtypismException){
             result.setState(2000);
             result.setMessage(("账号密码错误"));
+        }else if(e instanceof PwNotSameException){
+            result.setState(2010);
+            result.setMessage(("原密码不一致"));
+        }else if(e instanceof UpdateException){
+            result.setState(2020);
+            result.setMessage(("更新时发生未知错误"));
         }
         return  result;
     }

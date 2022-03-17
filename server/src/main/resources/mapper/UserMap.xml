@@ -33,4 +33,27 @@
             is_delete = 0
     </select>
 
+
+    <update id="updatePasswordByUid">
+        UPDATE  t_user
+        SET
+            `password`=#{newPassword},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE uid=#{uid} AND
+            is_delete = 0
+    </update>
+
+
+    <select id="findByUid" resultMap="UserEntityMap">
+        SELECT
+            *
+        FROM
+            t_user
+        WHERE
+            uid=#{uid}
+          AND
+            is_delete = 0
+    </select>
+
 </mapper>

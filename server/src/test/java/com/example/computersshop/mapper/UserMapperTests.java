@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 @SpringBootTest
 //表示启动这个单元测试类，需要传 springruner 实例的运行类型
 @RunWith(SpringRunner.class)
@@ -42,6 +44,17 @@ public class UserMapperTests {
     public void findByName(){
         User yhf = userMap.findByUsername("abc");
         System.out.println(yhf);
+    }
+
+    @Test
+    public void updatePasswordByUid(){
+        Integer isModify = userMap.updatePasswordByUid(19, "222222", "yhtt", new Date());
+    }
+
+    @Test
+    public void findByUid(){
+        User byUid = userMap.findByUid(19);
+        System.out.println(byUid);
     }
 
 }

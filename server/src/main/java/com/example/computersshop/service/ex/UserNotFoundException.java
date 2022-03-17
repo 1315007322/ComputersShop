@@ -8,7 +8,7 @@ package com.example.computersshop.service.ex;
 
 public class UserNotFoundException extends ServiceException{
     public UserNotFoundException() {
-        super();
+        super("没有该用户");
     }
 
     public UserNotFoundException(String message) {

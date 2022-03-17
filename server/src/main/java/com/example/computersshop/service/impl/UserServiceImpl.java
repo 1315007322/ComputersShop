@@ -9,14 +9,12 @@ package com.example.computersshop.service.impl;
 import com.example.computersshop.entity.User;
 import com.example.computersshop.mapper.UserMap;
 import com.example.computersshop.service.IUserService;
-import com.example.computersshop.service.ex.InsertException;
-import com.example.computersshop.service.ex.UserAlreadyException;
-import com.example.computersshop.service.ex.UserNotFoundException;
-import com.example.computersshop.service.ex.UserPwAtypismException;
+import com.example.computersshop.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.UUID;
 
@@ -64,7 +62,7 @@ public class UserServiceImpl implements IUserService {
     public User login(String username, String password) {
         User user = userMap.findByUsername(username);
         if(user == null){
-            throw new UserNotFoundException("没有该用户");
+            throw new UserNotFoundException();
         }
         String salt = user.getSalt();
         String md5PW = getMD5PW(password, salt);
@@ -78,4 +76,30 @@ public class UserServiceImpl implements IUserService {
         user1.setAvatar(user.getAvatar());
         return user1;
     }
+
+    @Override
+    public void changePassword(Integer uid, String username, String oldPassword, String newPassword) {
+        User user = userMap.findByUid(uid);
+        if(user == null){
+            throw new UserNotFoundException();
+        }
+
+        String salt = user.getSalt();
+        String md5PW = getMD5PW(oldPassword, salt);
+        if(!user.getPassword().equals(md5PW)){
+            throw new UserPwAtypismException("账号密码错误");
+        }
+
+        String pw = getMD5PW(newPassword, user.getSalt());
+
+
+        Integer integer = userMap.updatePasswordByUid(uid, pw, username, new Date());
+        if(integer != 1){
+            throw  new UpdateException();
+        }
+
+
+    }
+
+
 }

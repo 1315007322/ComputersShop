@@ -8,6 +8,8 @@ package com.example.computersshop.mapper;
 
 import com.example.computersshop.entity.User;
 
+import java.util.Date;
+
 public interface UserMap {
     /**
      * 插入用户数据
@@ -23,4 +25,25 @@ public interface UserMap {
      * @return
      */
     User findByUsername(String username);
+
+    /**
+     * 根据uid修改用户密码
+     * @return
+     */
+    /**
+     * 根据用户uid修改用户密码
+     * @param uid 用户uid
+     * @param newPassword  新传入的密码
+     * @param modifiedUser 修改者 用户名
+     * @param modifiedTime 修改时间
+     * @return 返回受影响的行数
+     */
+    Integer updatePasswordByUid(Integer uid, String newPassword, String modifiedUser, Date modifiedTime);
+
+    /**
+     * 根据用户uid 查询用户数据
+     */
+    User findByUid(Integer uid);
+
+
 }

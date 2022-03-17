@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import routes from '@src/config/routes'
 import { history } from '@utils/router';
 import logo from '@src/assets/logo.gif'
-import {RiMenuFoldLine} from 'react-icons/ri'
+import { RiMenuFoldLine } from 'react-icons/ri'
 
 const { SubMenu } = Menu;
 const Nav = () => {
@@ -39,25 +39,25 @@ const Nav = () => {
     };
     return (
         <Wrap>
-            <div className="logo">
-                <img src={logo} alt="" />
-            </div>
-            <Menu
-                onClick={handleClick}
-                selectedKeys={[current]}
-                mode="horizontal"
-                overflowedIndicator={<RiMenuFoldLine/>}
-            >
-                {routes && routes.length > 0 && (
-                    routes.map((item: any) => {
-                        if (item.isMenu) {
-                            return <Menu.Item key={item.path} icon={item.icon}>{item.name}</Menu.Item>
-                        }
-                    })
-                )}
+            <div className="base_content">
+                <Menu
+                    onClick={handleClick}
+                    selectedKeys={[current]}
+                    mode="horizontal"
+                    overflowedIndicator={<RiMenuFoldLine />}
+                >
+                    {routes && routes.length > 0 && (
+                        routes.map((item: any) => {
+                            if (item.isMenu) {
+                                return <Menu.Item key={item.path} icon={item.icon}>{item.name}</Menu.Item>
+                            }
+                        })
+                    )}
+                </Menu>
 
-            </Menu>
-        </Wrap>
+            </div>
+
+        </Wrap >
 
     );
 }

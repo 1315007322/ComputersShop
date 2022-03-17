@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input, message } from 'antd'
 import { UserLogin } from '@src/api/user';
+import { history } from '@utils/router';
 
 interface Props {
     changeIsLogin: (type: boolean) => void;
@@ -14,9 +15,11 @@ const Login = (props: Props) => {
         console.log('Success:', values);
         UserLogin(values).then(
             res => {
+                console.log(res);
                 form.resetFields();
                 message.success("登录成功！")
-                
+                localStorage.setItem('user',JSON.stringify(res))
+                history.push('/home')
             }
         ).catch(err => { })
     };

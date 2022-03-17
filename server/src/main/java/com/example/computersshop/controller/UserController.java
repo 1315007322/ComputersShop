@@ -41,4 +41,15 @@ public class UserController extends BaseController{
         // 将以上返回值和状态码OK封装到响应结果中并返回
         return new JsonResult<User>(OK, "登录成功",data);
     }
+
+    @PostMapping("/changePw")
+    public JsonResult<User> changePw(
+            String oldPassword,
+            String newPassword,
+            ,HttpSession session) {
+
+        // 将以上返回值和状态码OK封装到响应结果中并返回
+        return new JsonResult<User>(OK, "修改成功",null);
+    }
+
 }

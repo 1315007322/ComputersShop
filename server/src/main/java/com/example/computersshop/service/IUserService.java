@@ -10,6 +10,8 @@ package com.example.computersshop.service;
 
 import com.example.computersshop.entity.User;
 
+import java.util.Date;
+
 public interface IUserService {
 
     /**
@@ -24,4 +26,8 @@ public interface IUserService {
      * @param password 登录密码
      */
     User login(String username,String password);
+
+
+    void changePassword(Integer uid, String username, String oldPassword, String newPasswordd);
+
 }
