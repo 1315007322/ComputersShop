@@ -10,10 +10,11 @@ export const TopHeader = () => {
     const [user, setUser] = useState<any>(null)
 
     useEffect(() => {
-        getUserDetail();
+        getUserDetail()
     }, [])
 
     const getUserDetail = () => {
+        
         let userData = JSON.parse(localStorage.getItem('user') || '[]')
         if (Object.prototype.toString.call(userData) === '[object Object]') {
             setUser(userData);

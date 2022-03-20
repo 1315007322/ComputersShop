@@ -14,9 +14,13 @@ public class User extends Base{
     private String username;
     private String password;
     private String salt;
+//    手机号码
     private String phone;
+//    邮箱
     private String email;
+//    性别
     private Integer gender;
+//    头像地址
     private String avatar;
     private Integer isDelete;
 

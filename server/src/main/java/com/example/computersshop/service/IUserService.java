@@ -30,4 +30,5 @@ public interface IUserService {
 
     void changePassword(Integer uid, String username, String oldPassword, String newPasswordd);
 
+    User changeInfo(Integer uid,String phone,String email,Integer gender);
 }

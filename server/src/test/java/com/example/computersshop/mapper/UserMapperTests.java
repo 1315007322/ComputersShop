@@ -57,4 +57,17 @@ public class UserMapperTests {
         System.out.println(byUid);
     }
 
+    @Test
+    public void updateInFoByUid(){
+        User user = new User();
+        user.setUid(22);
+        user.setPhone("15751490322");
+        user.setEmail("1315007322@qq.com");
+        user.setGender(1);
+        user.setModifiedTime(new Date());
+        user.setModifiedUser("test");
+        Integer integer = userMap.updateInFoByUid(user);
+        System.out.println(integer);
+    }
+
 }

@@ -46,4 +46,11 @@ public interface UserMap {
     User findByUid(Integer uid);
 
 
+    /**
+     * 根据uid 更改用户信息
+     * @param user 用户数据
+     * @return 返回更改后的结果
+     */
+    Integer updateInFoByUid(User user);
+
 }

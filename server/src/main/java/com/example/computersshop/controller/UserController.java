@@ -6,6 +6,7 @@ package com.example.computersshop.controller;
  *创建时间:2022/3/13 8:49
  */
 
+import com.example.computersshop.entity.Password;
 import com.example.computersshop.entity.User;
 import com.example.computersshop.service.IUserService;
 import com.example.computersshop.utils.JsonResult;
@@ -43,13 +44,33 @@ public class UserController extends BaseController{
     }
 
     @PostMapping("/changePw")
-    public JsonResult<User> changePw(
-            String oldPassword,
-            String newPassword,
-            ,HttpSession session) {
+    @ResponseBody
+    public JsonResult<Void> changePw(@RequestBody Password password ,HttpSession session) {
+        // 调用session.getAttribute("")获取uid和username
+        System.out.println(session);
+        Integer uid = getUuidFromSession(session);
+        String username = getUsernameFromSession(session);
 
+        // 调用业务对象执行修改密码
+        userService.changePassword(uid, username, password.getOldPassword(), password.getNewPassword());
+        // 返回成功
         // 将以上返回值和状态码OK封装到响应结果中并返回
-        return new JsonResult<User>(OK, "修改成功",null);
+        return new JsonResult<Void>(OK, "修改成功");
+    }
+
+    @PostMapping("/changeInfo")
+    @ResponseBody
+    public JsonResult<User> changeInfo(@RequestBody User user ,HttpSession session) {
+        // 调用session.getAttribute("")获取uid和username
+        System.out.println(session);
+        Integer uid = getUuidFromSession(session);
+
+        // 调用业务对象执行修改密码
+        User result = userService.changeInfo(uid, user.getPhone(), user.getEmail(), user.getGender());
+
+        // 返回成功
+        // 将以上返回值和状态码OK封装到响应结果中并返回
+        return new JsonResult<User>(OK, "修改成功",user);
     }
 
 }

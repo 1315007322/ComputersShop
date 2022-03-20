@@ -56,4 +56,17 @@
             is_delete = 0
     </select>
 
+
+    <update id="updateInFoByUid">
+        UPDATE  t_user
+        SET
+            phone=#{phone},
+            email=#{email},
+            gender=#{gender},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        WHERE uid=#{uid} AND
+            is_delete = 0
+    </update>
+
 </mapper>

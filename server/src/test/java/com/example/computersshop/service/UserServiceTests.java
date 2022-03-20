@@ -33,6 +33,12 @@ public class UserServiceTests {
 
     @Test
     public void changePassword(){
-        userService.changePassword(21,"qqq","111","222");
+        userService.changePassword(22,"test","qwe","123");
+    }
+
+
+    @Test
+    public void changeInfo(){
+        userService.changeInfo(22,"13122581766","1315007312@qq.com",0);
     }
 }

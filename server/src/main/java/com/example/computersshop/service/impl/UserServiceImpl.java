@@ -74,6 +74,9 @@ public class UserServiceImpl implements IUserService {
         user1.setUsername(user.getUsername());
         user1.setUid(user.getUid());
         user1.setAvatar(user.getAvatar());
+        user1.setPhone(user.getPhone());
+        user1.setEmail(user.getEmail());
+        user1.setGender(user.getGender());
         return user1;
     }
 
@@ -91,14 +94,32 @@ public class UserServiceImpl implements IUserService {
         }
 
         String pw = getMD5PW(newPassword, user.getSalt());
-
-
         Integer integer = userMap.updatePasswordByUid(uid, pw, username, new Date());
+        System.out.println(integer);
         if(integer != 1){
             throw  new UpdateException();
         }
 
 
+    }
+
+    @Override
+    public User changeInfo(Integer uid,String phone, String email, Integer gender) {
+        User user = userMap.findByUid(uid);
+        if(user == null){
+            throw new UserNotFoundException();
+        }
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setGender(gender);
+        user.setModifiedTime(new Date());
+        user.setModifiedUser(user.getUsername());
+        Integer integer = userMap.updateInFoByUid(user);
+        if(integer != 1){
+            throw  new UpdateException();
+        }
+
+        return user;
     }
 
 

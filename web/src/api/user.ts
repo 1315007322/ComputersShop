@@ -11,6 +11,11 @@ export const UserLogin = (params: { username: string, password: string }) => {
 }
 
 // 修改密码
-export const ChangePw = (params: { newPassword: string, oldpassword: string }) => {
-    return post('user/changePassword', params)
+export const ChangePw = (params: { oldPassword: string, newPassword: string }) => {
+    return post('user/changePw', params)
+}
+
+// 修改用户的资料
+export const ChangeUserInfo = (user: User) => {
+    return post('user/changeInfo', user)
 }

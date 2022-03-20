@@ -1,19 +1,32 @@
 import { UserLogin } from '@src/api/user';
-import { Button, Form, Input, Modal } from 'antd';
-import React from 'react'
+import { Button, Form, Input, message, Modal } from 'antd';
+import React, { FC } from 'react'
 import { ChangePw } from '@api/user'
+import { history } from '@utils/router';
 
 interface Props {
     visible: boolean,
     oncancel: () => void;
 }
 
-const ChangePwModal = (props: Props) => {
-
+const ChangePwModal: FC<Props> = (props: Props) => {
     const { visible, oncancel } = props;
     const [form] = Form.useForm();
 
-    const onFinish = () => {
+    const onFinish = (values: any) => {
+        ChangePw({
+            oldPassword: values.oldpassword,
+            newPassword: values.newpassword
+        }).then(
+            res => {
+                message.success("修改成功")
+                form.resetFields();
+                oncancel();
+                history.push("/home")
+            }
+        ).catch(err => { })
+        console.log(values);
+
 
     }
 
