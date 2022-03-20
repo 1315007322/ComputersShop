@@ -1,7 +1,8 @@
 import { history } from '@utils/router'
+import { Dropdown, Menu } from 'antd';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
+import { DownOutlined } from '@ant-design/icons';
 
 type loginOrReg = "LOGIN" | "REG";
 
@@ -14,7 +15,7 @@ export const TopHeader = () => {
     }, [])
 
     const getUserDetail = () => {
-        
+
         let userData = JSON.parse(localStorage.getItem('user') || '[]')
         if (Object.prototype.toString.call(userData) === '[object Object]') {
             setUser(userData);
@@ -27,6 +28,16 @@ export const TopHeader = () => {
         })
     }
 
+    const menu = (
+        <Menu>
+            <Menu.Item onClick={() => { history.push('/person')}}>
+                个人中心
+            </Menu.Item>
+            <Menu.Item>
+                收货地址
+            </Menu.Item>
+        </Menu>
+    );
     return (
         <Wrap>
             <div className='base_content'>
@@ -35,7 +46,13 @@ export const TopHeader = () => {
                 </p>
                 {user ?
                     <p>
-                        尊敬的  <span className='link' onClick={() => {history.push('/person')}} > {user.username} </span> 贵宾
+                        尊敬的
+                        <Dropdown overlay={menu}>
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                {user.username}
+                            </a>
+                        </Dropdown>
+                        贵宾
                     </p>
                     :
                     <p>

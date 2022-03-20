@@ -6,21 +6,21 @@ import { Btn } from 'superyanui/src/components/Button/Button'
 import { Typography } from 'antd';
 import { getHistoryState } from '@utils/common';
 
+import { Index } from 'yhfui'
+
 export default function Home() {
     const [isLogin, setIslogin] = useState<boolean>(true);
     const type = getHistoryState().type
 
     useEffect(() => {
         setIslogin(getHistoryState().type === 'LOGIN')
-    },[])
+    }, [])
 
     const changeIsLogin = (type: boolean) => {
         setIslogin(type)
     }
     return (
         <Wrap>
-            {/* <Btn label='按钮'></Btn> */}
-            <h1></h1>
             <Typography.Title level={2} style={{ marginBottom: 20, textAlign: 'center' }}>
                 电脑商城
             </Typography.Title>
