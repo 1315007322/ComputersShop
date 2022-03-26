@@ -8,18 +8,26 @@ package com.example.computersshop.mapper;
 
 import com.example.computersshop.entity.Address;
 
+import java.util.List;
+
 public interface AddressMap {
     /**
      * 插入地址
      * @param address 地址实体
      * @return 操作的行数
      */
-    Integer insert(AddressMap address);
+    Integer insert(Address address);
 
     /**
      * 根据用户id 查询用户的所有地址
      * @param uid
      * @return
      */
-    Address findAddressByUid(Integer uid);
+    List<Address> findAddressByUid(Integer uid);
+    /**
+     * 根据用户id 查询用户地址数量
+     * @param uid
+     * @return
+     */
+    Integer findCountByUid(Integer uid);
 }

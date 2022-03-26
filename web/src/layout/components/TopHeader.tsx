@@ -15,7 +15,6 @@ export const TopHeader = () => {
     }, [])
 
     const getUserDetail = () => {
-
         let userData = JSON.parse(localStorage.getItem('user') || '[]')
         if (Object.prototype.toString.call(userData) === '[object Object]') {
             setUser(userData);
@@ -30,10 +29,10 @@ export const TopHeader = () => {
 
     const menu = (
         <Menu>
-            <Menu.Item onClick={() => { history.push('/person')}}>
+            <Menu.Item onClick={() => { history.push('/person') }}>
                 个人中心
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={() => { history.push('/address') }} >
                 收货地址
             </Menu.Item>
         </Menu>

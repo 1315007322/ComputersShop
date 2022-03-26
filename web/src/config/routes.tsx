@@ -16,6 +16,7 @@ import LoginOrReg from '@pages/user/LoginOrReg'
 import { Navigate } from 'react-router-dom'
 import Home from '@src/pages/content/home'
 import Person from '@src/pages/content/person'
+import Address from '@src/pages/content/address'
 
 
 
@@ -39,7 +40,16 @@ const routes = [
         childrens: [
         ]
     },
-    
+    {
+        path: '/address',
+        index: true,
+        component: <Address />,
+        name: '收货地址',
+        isMenu: false,
+        childrens: [
+        ]
+    },
+
     // {
     //     path: '/article',
     //     component: <Article />,
