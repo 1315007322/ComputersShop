@@ -21,7 +21,7 @@ const App = () => {
                                     <Route index={item.index} path={item.path} element={item.component} key={item.path} >
                                         {item.childrens && item.childrens.length > 0 && (
                                             item.childrens.map((item: any) => {
-                                                <Route index={item.index} path={item.path} element={item.component}></Route>
+                                                <Route key={item.index} index={item.index} path={item.path} element={item.component}></Route>
                                             })
                                         )}
                                     </Route>

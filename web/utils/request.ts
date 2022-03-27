@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { message } from 'antd';
+import { history } from './router';
 
 let baseURL = '';
 
@@ -32,12 +33,18 @@ myAxios.interceptors.request.use(function (config) {
 myAxios.interceptors.response.use(function (response: any) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
-    let {state,data,message: msg} = response.data;
-    console.log(msg);
-    
-    if(state === 200){
+    let { state, data, message: msg } = response.data;
+
+    if (state === 200) {
         return Promise.resolve(data)
-    }else{
+    }
+    if (state === 17020) {
+        message.error(msg)
+        localStorage.clear();
+        console.log(state);
+
+    }
+    else {
         message.error(msg)
         return Promise.reject(false)
     }

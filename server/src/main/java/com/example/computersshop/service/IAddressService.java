@@ -17,6 +17,12 @@ public interface IAddressService {
      */
     void addAddress(Integer uid, Address address);
 
+    /**
+     * 更新收货地址
+     * @return
+     */
+    void updateAddress(Integer uid, Address address);
+
 
     /**
      * 获取用户所有的收货地址

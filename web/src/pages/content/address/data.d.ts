@@ -1,0 +1,32 @@
+export type address = {
+    //    收货地址id
+    aid: number;
+    //    归属的用户id
+    uid: number;
+    //    收货人姓名
+    name: string;
+    //    省-名称
+    provinceName: string;
+    //    省-行政代号
+    provinceCode: string;
+    //    市-名称
+    cityName: string;
+    //    市-行政代号
+    cityCode: string;
+    //    区-名称
+    areaName: string;
+    //    区-行政代号
+    areaCode: string;
+    //    邮政编码
+    zip: string;
+    //    详细地址
+    address: string;
+    //    手机
+    phone: string;
+    //    固话
+    tel: string;
+    //    标签
+    tag: string;
+    //    是否默认：0-不默认，1-默认
+    isDefault: string;
+}

@@ -29,6 +29,10 @@ public class UserMapperTests {
     @Autowired
     private AddressMap addressMap;
 
+
+    @Autowired
+    private DictDistrictMap districtMap;
+
     /**
      * 必须被@Test注解修饰
      * 返回 void
@@ -78,13 +82,13 @@ public class UserMapperTests {
     @Test
     public void insertAddress(){
         Address address = new Address();
-        address.setUid(22);
+        address.setUid(24);
         addressMap.insert(address);
     }
 
     @Test
     public void findCountByUid(){
-        Integer countByUid = addressMap.findCountByUid(22);
+        Integer countByUid = addressMap.findCountByUid(24);
         System.out.println(countByUid);
     }
 
@@ -95,5 +99,11 @@ public class UserMapperTests {
              addressByUid) {
             System.out.println(item.toString());
         }
+    }
+
+    @Test
+    public void findNameByCode(){
+        String nameByCode = districtMap.findNameByCode("330601");
+        System.out.println(nameByCode);
     }
 }

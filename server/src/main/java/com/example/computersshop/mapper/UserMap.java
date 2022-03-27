@@ -7,9 +7,11 @@ package com.example.computersshop.mapper;
  */
 
 import com.example.computersshop.entity.User;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Date;
 
+@Mapper
 public interface UserMap {
     /**
      * 插入用户数据

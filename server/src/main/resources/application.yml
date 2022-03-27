@@ -3,6 +3,12 @@ spring:
     url: "jdbc:mysql://8.142.15.149:3306/computersshop?useUnicode=true&serverTimezone=GMT&characterEncoding=utf8&useSSL=true"
     username: computersShop
     password: RdBpKAshBxzt28nF
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 10
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      leakDetectionThreshold: 300000
 mybatis:
   mapper-locations: "classpath:mapper/*.xml"
 server:
