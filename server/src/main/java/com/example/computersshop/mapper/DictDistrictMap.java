@@ -6,8 +6,12 @@ package com.example.computersshop.mapper;
  *创建时间:2022/3/27 17:57
  */
 
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
+
+@Mapper
 public interface DictDistrictMap {
 
 

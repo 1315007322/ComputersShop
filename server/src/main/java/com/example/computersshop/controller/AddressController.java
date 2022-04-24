@@ -9,8 +9,9 @@ package com.example.computersshop.controller;
 import com.example.computersshop.entity.Address;
 import com.example.computersshop.service.IAddressService;
 import com.example.computersshop.service.IDicDistrictService;
-import com.example.computersshop.service.impl.AddressServiceImpl;
 import com.example.computersshop.utils.JsonResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,15 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@Api(tags = "收货地址")
 @RequestMapping("address")
 public class AddressController extends BaseController{
 
     @Autowired
-    IAddressService addressService;
+    private IAddressService addressService;
 
     @Autowired
-    IDicDistrictService dicDistrictService;
+    private IDicDistrictService dicDistrictService;
 
 
     @PostMapping("/add")

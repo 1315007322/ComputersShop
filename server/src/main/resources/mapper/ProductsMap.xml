@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.computersshop.mapper.ProductsMap">
+   <resultMap id="ProductEntityMap" type="com.example.computersshop.entity.Product">
+      <id column="id" property="id"/>
+      <result column="category_id" property="categoryId"/>
+      <result column="item_type" property="itemType"/>
+      <result column="sell_point" property="sellPoint"/>
+      <result column="created_user" property="createdUser"/>
+      <result column="created_time" property="createdTime"/>
+      <result column="modified_user" property="modifiedUser"/>
+      <result column="modified_time" property="modifiedTime"/>
+   </resultMap>
+   <select id="findListPage" resultMap="ProductEntityMap" parameterType="com.example.computersshop.entity.PageParam">
+        SELECT * FROM t_product WHERE status=1
+   </select>
+
+
+
+</mapper>

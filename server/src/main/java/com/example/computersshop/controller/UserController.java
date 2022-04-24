@@ -10,6 +10,8 @@ import com.example.computersshop.entity.Password;
 import com.example.computersshop.entity.User;
 import com.example.computersshop.service.IUserService;
 import com.example.computersshop.utils.JsonResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@Api(tags = "用户中心")
 @RequestMapping("user")
 public class UserController extends BaseController{
 

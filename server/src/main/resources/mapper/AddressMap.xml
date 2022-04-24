@@ -57,5 +57,9 @@
         SELECT * FROM  t_address WHERE uid = #{uid}
     </select>
 
+    <delete id="deleteByAid">
+        delete from t_address where aid = #{aid}
+    </delete>
+
 
 </mapper>

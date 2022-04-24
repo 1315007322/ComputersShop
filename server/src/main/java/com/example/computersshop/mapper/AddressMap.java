@@ -40,4 +40,11 @@ public interface AddressMap {
      * @return
      */
     Integer findCountByUid(Integer uid);
+
+    /**
+     * 根据地址的aid 删除该地址 物理删除
+     * @param aid
+     * @return
+     */
+    Integer deleteByAid(Integer aid);
 }
