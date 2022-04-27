@@ -1,9 +1,9 @@
-import { List, Avatar, Space } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { List, Card, Space, Image, Tooltip, Button } from 'antd';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getList } from '@api/home'
+import { getList } from '@api/products'
 import { history } from '@utils/router';
+import { ossHeader } from '../address/config';
 
 const IconText = ({ icon, text }: { [key: string]: any }) => (
     <Space>
@@ -12,23 +12,22 @@ const IconText = ({ icon, text }: { [key: string]: any }) => (
     </Space>
 );
 
+const { Meta } = Card;
 
 const Index = () => {
-    const [loading, setloading] = useState<boolean>(false)
+    const [loading, setloading] = useState<boolean>(true)
     const [dataSource, setDateSource] = useState<[{ [key: string]: any }]>([{}])
     const [pageOptions, setPageOptions] = useState<{ pageNum: number, pageSize: number, total: number }>({
         pageNum: 1,
-        pageSize: 5,
+        pageSize: 10,
         total: 0
     })
 
     useEffect(() => {
-        // getArticleList()
-
+        getProductsList()
     }, [pageOptions.pageNum, pageOptions.pageSize])
 
-    //获取后台文章列表
-    const getArticleList = () => {
+    const getProductsList = () => {
         setloading(true)
         getList({
             pageNum: pageOptions.pageNum,
@@ -36,7 +35,7 @@ const Index = () => {
         }).then(
             (res: any) => {
                 console.log(res);
-                setDateSource(res.records)
+                setDateSource(res.list)
                 pageOptions.total = res['total']
                 setloading(false)
             },
@@ -56,12 +55,13 @@ const Index = () => {
         return (
             <List
                 loading={loading}
+                grid={{ gutter: 16, column: 4 }}
                 itemLayout="vertical"
                 size="large"
                 pagination={{
-                    onChange: page => {
-                        console.log(page);
-                        pageOptions.pageNum = page
+                    onChange: (current: number, size: number) => {
+                        pageOptions.pageNum = current
+                        pageOptions.pageSize = size
                         setPageOptions({ ...pageOptions })
                     },
                     pageSize: pageOptions.pageSize,
@@ -70,27 +70,21 @@ const Index = () => {
                 }}
                 dataSource={dataSource}
                 renderItem={(item: any) => (
-                    <List.Item
-                        className='list_item'
-                        key={item.title}
-                        actions={[
-                            <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                            <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                            <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-                        ]}
-                        extra={
-                            <img
-                                width={272}
-                                alt={item.title}
-                                src={item.coverImg}
-                            />
-                        }
-                    >
-                        <List.Item.Meta
-                            title={<span className='title' onClick={() => checkArticle(item.id)}>{item.title}</span>}
-                            description={item.description}
-                        />
-                        {/* {item.content} */}
+                    <List.Item>
+                        <Card
+                            hoverable
+                            style={{ width: 240 }}
+                            cover={<img alt="example" className='productImg' src={ossHeader + item.image + '1.jpg'} />}
+                        >
+                            <Tooltip title={item.title}>
+                                <Meta title={item.title} />
+                            </Tooltip>
+                            <div className='actionsBtn'>
+                                <Button>收藏</Button>
+                                <Button type="primary">加入购物车</Button>
+                            </div>
+                        </Card>
+
                     </List.Item>
                 )}
             />
@@ -99,7 +93,7 @@ const Index = () => {
     }
     return (
         <Wrap>
-            {/* {renderCards()} */}
+            {renderCards()}
         </Wrap>
 
     )
@@ -112,29 +106,25 @@ const Wrap = styled.div`
         background-color: #fff;
         margin-bottom: 15px;
     }
-    .ant-list-item-meta-description{
-        /* overflow:hidden; 
-        text-overflow:ellipsis; 
-        white-space:nowrap; 
-        height: 50px; */
+    .productImg{
+        width: 100px;
+        display: inline-block;
     }
-    .title{
-        cursor: pointer;
+    .ant-card-cover{
+        padding-top: 15px;
+        text-align: center;
     }
-    .title:hover{
-
-    }
-    .ant-list-item-extra{
+    .actionsBtn{
+        margin-top: 15px;
         display: flex;
-        align-items: center;
-        img{
-            max-height: 102px;
-        }
+        justify-content: space-around;
     }
+   .ant-card-meta{
+       width: 100%;
+   }
     .ant-list{
         min-height: 793px;
     }
-    
 `
 
 export default Index;

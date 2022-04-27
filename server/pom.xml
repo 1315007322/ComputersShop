@@ -68,12 +68,10 @@
             <version>3.0.0</version>
         </dependency>
 
-
-<!--        mybatis分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.2.0</version>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.5</version>
         </dependency>
 
     </dependencies>
@@ -91,8 +89,6 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
-            <!--设置分页插件-->
-            <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
         </plugins>
     </build>
 

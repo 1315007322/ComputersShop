@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.ArrayList;
 import java.util.List;
 
+@Configuration
 public class LoginInterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -31,7 +32,6 @@ public class LoginInterceptorConfig implements WebMvcConfigurer {
         patterns.add("/swagger-resources/**");
         patterns.add("/swagger-ui/index.html");
         patterns.add("/webjars/**");
-
         // 通过注册工具添加拦截器
         registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(patterns);
     }

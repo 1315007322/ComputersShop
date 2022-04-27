@@ -6,6 +6,7 @@ package com.example.computersshop.controller;
  *创建时间:2022/3/13 8:49
  */
 
+import com.example.computersshop.entity.Login;
 import com.example.computersshop.entity.Password;
 import com.example.computersshop.entity.User;
 import com.example.computersshop.service.IUserService;
@@ -14,12 +15,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 @Api(tags = "用户中心")
+@Validated
 @RequestMapping("user")
 public class UserController extends BaseController{
 
@@ -35,7 +38,7 @@ public class UserController extends BaseController{
 
     @PostMapping("/login")
     @ResponseBody
-    public JsonResult<User> login(@RequestBody User user,HttpSession session) {
+    public JsonResult<User> login(@RequestBody Login user, HttpSession session) {
         // 调用业务对象的方法执行登录，并获取返回值
         User data = userService.login(user.getUsername(), user.getPassword());
         //登录成功后，将uid和username存入到HttpSession中

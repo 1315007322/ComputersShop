@@ -26,8 +26,6 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public PageInfo<Product> selectProduct(PageParam pageParam) {
-        System.out.println(pageParam.getPageSize());
-        PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
         List<Product> listPage = productsMap.findListPage(pageParam);
         return new PageInfo<>(listPage);
     }

@@ -51,6 +51,8 @@ export const column = [
 
 ]
 
+export const ossHeader = 'https://yhfmall.oss-cn-beijing.aliyuncs.com'
+
 
 export const ChineseDistricts: { [key: string]: { [key: string]: string } } = {
     86: {
