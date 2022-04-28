@@ -21,7 +21,7 @@ const BasicLayout = (props: any) => {
 					</div>
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
-					苏ICP备19044106号-2 Powered by YHF © 2022 Copyright
+					瞎做的一个demo © 2022 Copyright
 				</Footer>
 				<BackTop>
 					<div className='backTop'>

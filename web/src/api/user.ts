@@ -10,6 +10,11 @@ export const UserLogin = (params: { username: string, password: string }) => {
     return post('user/login', params)
 }
 
+// 退出
+export const UserloginOut = () => {
+    return post('user/logout')
+}
+
 // 修改密码
 export const ChangePw = (params: { oldPassword: string, newPassword: string }) => {
     return post('user/changePw', params)

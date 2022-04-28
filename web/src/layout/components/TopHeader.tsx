@@ -3,6 +3,8 @@ import { Dropdown, Menu } from 'antd';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { DownOutlined } from '@ant-design/icons';
+import { observer } from 'mobx-react'
+import { userStore } from '../../store/user'
 
 type loginOrReg = "LOGIN" | "REG";
 
@@ -10,15 +12,21 @@ export const TopHeader = () => {
 
     const [user, setUser] = useState<any>(null)
 
-    useEffect(() => {
-        getUserDetail()
-    }, [])
+    // useEffect(() => {
+    //     getUserDetail()
+    // }, [])
 
     const getUserDetail = () => {
-        let userData = JSON.parse(localStorage.getItem('user') || '[]')
-        if (Object.prototype.toString.call(userData) === '[object Object]') {
-            setUser(userData);
-        }
+        // let userData = JSON.parse(localStorage.getItem('user') || '[]')
+        // if (Object.prototype.toString.call(userData) === '[object Object]') {
+        //     setUser(userData);
+        // }
+        console.log("qqqqqqq");
+        
+        console.log(userStore.user);
+        
+        setUser(userStore.user.username);
+
     }
 
     const ToLogin = (type: loginOrReg) => {
@@ -43,12 +51,12 @@ export const TopHeader = () => {
                 <p>
                     欢迎来到本网站~
                 </p>
-                {user ?
+                {userStore.user.username ?
                     <p>
                         尊敬的
                         <Dropdown overlay={menu}>
                             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                {user.username}
+                                {userStore.user.username}
                             </a>
                         </Dropdown>
                         贵宾
@@ -71,4 +79,4 @@ const Wrap = styled.div`
 `
 
 
-export default TopHeader;
+export default observer(TopHeader);

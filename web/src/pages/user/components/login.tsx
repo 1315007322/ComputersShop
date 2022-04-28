@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Checkbox, Form, Input, message } from 'antd'
 import { UserLogin } from '@src/api/user';
 import { history } from '@utils/router';
+import { observer } from 'mobx-react';
+import { userStore } from '@src/store/user';
 
 interface Props {
     changeIsLogin: (type: boolean) => void;
@@ -10,17 +12,19 @@ interface Props {
 const Login = (props: Props) => {
     const { changeIsLogin } = props
     const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
 
     const onFinish = (values: { username: string, password: string }) => {
-        console.log('Success:', values);
+        setLoading(true)
         UserLogin(values).then(
-            res => {
+            (res: any) => {
                 form.resetFields();
                 message.success("登录成功！")
-                localStorage.setItem('user',JSON.stringify(res))
+                userStore.setUser(res)
                 history.push('/home')
+                setLoading(false)
             }
-        ).catch(err => { })
+        ).catch(err => { setLoading(false) })
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -70,4 +74,4 @@ const Login = (props: Props) => {
 }
 
 
-export default Login;
+export default observer(Login);

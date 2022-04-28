@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Checkbox, Form, Input, message } from 'antd'
 import { UserReg } from '@src/api/user';
 
@@ -9,16 +9,18 @@ interface Props {
 const Reg = (props: Props) => {
     const { changeIsLogin } = props
     const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
 
     const onFinish = (values: User) => {
-        console.log('Success:', values);
+        setLoading(true)
         UserReg(values).then(
             res => {
                 form.resetFields();
                 message.success("注册成功！请登录");
                 changeIsLogin(true);
+                setLoading(false)
             }
-        ).catch(err => { })
+        ).catch(err => { setLoading(false) })
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -52,7 +54,7 @@ const Reg = (props: Props) => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
-                <Button type="primary" htmlType="submit" block>
+                <Button type="primary" htmlType="submit" block loading={loading}>
                     注册
                 </Button>
                 <div className='tips'>

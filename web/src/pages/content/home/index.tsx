@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { getList } from '@api/products'
 import { history } from '@utils/router';
 import { ossHeader } from '../address/config';
+import { observer } from 'mobx-react';
 
 const IconText = ({ icon, text }: { [key: string]: any }) => (
     <Space>
@@ -66,7 +67,7 @@ const Index = () => {
                     },
                     pageSize: pageOptions.pageSize,
                     total: pageOptions.total,
-                    showTotal: total => `共 ${total} 篇文章`
+                    showTotal: total => `共 ${total} 篇商品`
                 }}
                 dataSource={dataSource}
                 renderItem={(item: any) => (
@@ -74,7 +75,7 @@ const Index = () => {
                         <Card
                             hoverable
                             style={{ width: 240 }}
-                            cover={<img alt="example" className='productImg' src={ossHeader + item.image + '1.jpg'} />}
+                            cover={<img alt="暂无数据" className='productImg' src={ossHeader + item.image + '1.jpg'} />}
                         >
                             <Tooltip title={item.title}>
                                 <Meta title={item.title} />
@@ -127,4 +128,4 @@ const Wrap = styled.div`
     }
 `
 
-export default Index;
+export default observer(Index);

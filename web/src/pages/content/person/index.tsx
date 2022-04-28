@@ -1,6 +1,8 @@
+import { UserloginOut } from '@src/api/user';
+import { userStore } from '@src/store/user';
 import { RenderGender } from '@utils/common';
-import { history } from '@utils/router';
 import { Button, Descriptions, Image } from 'antd';
+import { observer } from 'mobx-react';
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import ChangePwModal from './components/ChangePwModal';
@@ -21,8 +23,18 @@ const Person = () => {
             ...data
         }
         setUserInfo(user)
-        localStorage.setItem('user',JSON.stringify(user))
+        localStorage.setItem('user', JSON.stringify(user))
         setChangeInFoVisible(false)
+    }
+
+
+    const loginout = () => {
+        UserloginOut().then(
+            res => {
+                userStore.delete();
+            },
+            err => { }
+        )
     }
 
     return (
@@ -50,10 +62,7 @@ const Person = () => {
                 <Descriptions.Item label="邮箱">{userInfo.email || '- -'}</Descriptions.Item>
                 <Descriptions.Item label="性别">{RenderGender(userInfo.gender)}</Descriptions.Item>
             </Descriptions>
-            <Button type="primary" danger onClick={() => {
-                localStorage.clear();
-                history.push('/home')
-            }}>退出登录</Button>
+            <Button type="primary" danger onClick={loginout}>退出登录</Button>
 
             <ChangePwModal visible={changePwVisible} oncancel={() => { setChangePwVisible(false) }} />
             <ModifyInfoModal
@@ -76,4 +85,4 @@ const Wrap = styled.div`
         margin-left: 20px;
     }
 `
-export default Person;
+export default observer(Person);

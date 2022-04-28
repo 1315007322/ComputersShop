@@ -1,7 +1,7 @@
 import HttpRequest from './request'
 
 
-const post = async (url: string, params: any) => {
+const post = async (url: string, params?: any) => {
     const res = HttpRequest.post(url, params)
     return res
 }
