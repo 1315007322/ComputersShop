@@ -52,10 +52,13 @@ public class UserServiceTests {
 
     @Test
     public void getProductList(){
-        PageParam pageParam = new PageParam();
-        pageParam.setPageNum(1);
-        pageParam.setPageSize(10);
-        PageInfo<Product> productPageInfo = productService.selectProduct(pageParam);
-        System.out.println(productPageInfo.toString());
+//        PageParam pageParam = new PageParam();
+//        pageParam.setPageNum(1);
+//        pageParam.setPageSize(10);
+//        PageInfo<Product> productPageInfo = productService.selectProduct(pageParam);
+//        System.out.println(productPageInfo.toString());
+
+        Integer a = null;
+        System.out.println(a);
     }
 }

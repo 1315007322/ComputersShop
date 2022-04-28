@@ -49,6 +49,16 @@ public class UserController extends BaseController{
         return new JsonResult<User>(OK, "登录成功",data);
     }
 
+    @PostMapping("/logout")
+    @ResponseBody
+    public JsonResult logout(HttpSession session) {
+        // 调用业务对象的方法执行登录，并获取返回值
+        session.removeAttribute("uid");
+        session.removeAttribute("username");
+        // 将以上返回值和状态码OK封装到响应结果中并返回
+        return new JsonResult<>(OK, "退出成功");
+    }
+
     @PostMapping("/changePw")
     @ResponseBody
     public JsonResult<Void> changePw(@RequestBody Password password ,HttpSession session) {
